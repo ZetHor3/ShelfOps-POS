@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShelfOps.Application\ShelfOps.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.6.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- CA1861: EF-generated migrations use inline array literals for composite indexes -->
+    <!-- CA1304,CA1311,CA1862: EF Core PostgreSQL doesn't translate StringComparison overloads,
+         so ToLower() with ToLowerInvariant() is the correct translatable pattern for case-insensitive queries -->
+    <NoWarn>$(NoWarn);CA1861;CA1304;CA1311;CA1862</NoWarn>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,53 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.csproj.user
+
+## NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+**/[Pp]ackages/repositories.config
+**/packages.lock.json
+
+## Visual Studio
+.vs/
+*.sln.ide/
+*.sln.DotSettings.user
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+_modules.xml
+_actions.xml
+
+## Local config & secrets (never commit)
+appsettings.Local.json
+appsettings.local.json
+appsettings.Development.json
+*.user.config
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Scripts / logs
+*.log

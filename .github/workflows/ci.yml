@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run unit tests
+      run: dotnet test tests/ShelfOps.UnitTests --no-build --configuration Release --verbosity normal
+
+    - name: Run integration tests
+      run: dotnet test tests/ShelfOps.IntegrationTests --no-build --configuration Release --verbosity normal
+
+    - name: Publish API
+      run: dotnet publish src/ShelfOps.Api --no-build --configuration Release --output ./publish/api
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: shelfops-api
+        path: ./publish/api
+        retention-days: 7
